@@ -1,0 +1,3 @@
+<app-search-bar (term)="onSearchTermUpdate($event)"></app-search-bar>
+<app-meal-list [mealList]="mealList" (selectedMeal)="onSelectedMealUpdate($event)"></app-meal-list>
+<app-meal-modal [meal]="selectedMeal"></app-meal-modal>
