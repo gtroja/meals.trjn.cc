@@ -1,24 +1,23 @@
-# TOPi - Full Stack Developer Test
+# trjn's MealDB client
 
-## Goal
-- To develop a web application able to display a list of searched meals on TheMealDB. 
-- The API example: https://www.themealdb.com/api/json/v1/1/search.php?s=
+## what?
+ this is the repository for https://meals.trjn.cc web app. It is a simple webpage that lets the user search meals by name in the [MealsDB](https://www.themealdb.com/) data base, and view its details. this repository contais both the frontend and backend source code
 
-## Required
-- You **NEED** to develop both the **front-end and the back-end**.
-- Display a list of the meals with each row containing: name, category, area, thumbnail and the cooking instructions
-- There must be a search bar to search for the meals
-- Readable code (variable names, structures)
-- Paging or infinite scrolling
-- At least one unit test
-- Deploy to a server (AWS, Heroku, Azure, etc)
-
-## Extra Points
-- The back-end is in Java
-- Mobile friendly
-- Use Lightning Design - http://lightningdesignsystem.com/
-- A cool design  
+## why?
+this is a test for a fullstack developer position at TOPi. The test description can be found at [requirements.md](./requirements.md)
 
 
-** * Make your repo private and add the following e-mails for reviewing the code after you finish the test:**  
-rafael.colatusso@topi.io, eduardo.carvalho@topi.io, oseas.tormen@topi.io, watson.marconato@topi.io
+## how..
+### ..do I use it?
+Type a meal's name in the searchbox located at the top of the page. If there are matches, a list of meals will appear. Click on a meal entry to view its details.
+
+
+### ..it's made?
+
+this system is made using [SpringBoot Java Framework](https://spring.io/projects/spring-boot) for the backend and [Angular](https://angular.io/) for the frontend. The system is hosted at [Heroku](heroku.com). 
+The `meals-angular` directory contains the source for the front-end and `proxy-api` contains the back-end source. Each directory has a README file with implementation details.
+
+The frontend consumes data from the MealDB's api throught the meals.trjn api, which makes simple http get requests and formats the data received, returning it to the frontend. All meals images shown are hosted by MealsDB.
+
+## who?
+This webapp was made by Guilherme Trojan. contact me by email via guilhermetrojan [at] alunos [dot]  utfpr.edu.br or guilhermetrojan [at] gmail.com
