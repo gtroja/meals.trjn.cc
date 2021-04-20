@@ -1,1 +1,5 @@
-<input #searchBox id="search-box" (input)="debounce(searchBox.value)" />
+<div class="slds-col_padded">
+    <ngl-input label="Meal Search " fieldLevelHelpTooltip="Enter a meal's name to be searched" >
+    <input ngl type="input" #searchBox id="search-box" (input)="debounce(searchBox.value)">
+    </ngl-input>
+</div>

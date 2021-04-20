@@ -1,2 +1,9 @@
-<p *ngIf="meal">{{meal.name}}</p>
-<img src={{meal.thumbnail}} />
+
+<ngl-modal  *ngIf=meal [header]=meal.name [(open)]="opened">
+  <div class="slds-p-around_medium">
+    <div class="slds-p-around_medium">      
+      <img src={{meal.thumbnail}}/>
+    </div>
+    <p>{{meal.cookingInstructions}}</p>
+  </div>
+</ngl-modal>

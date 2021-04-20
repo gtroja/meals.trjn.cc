@@ -6,6 +6,9 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MealListComponent } from './meal-list/meal-list.component';
 import { MealModalComponent } from './meal-modal/meal-modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import {NglModule} from 'ng-lightning';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    NglModule
   ],
   providers: [],
   bootstrap: [AppComponent]

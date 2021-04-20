@@ -9,10 +9,16 @@ import { Meal } from '../meal.model'
 export class MealModalComponent implements OnInit {
 
   @Input() meal : Meal
+  ngOnChanges() {
+    this.opened = this.meal?true:false;
+  }
+
+  opened : boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

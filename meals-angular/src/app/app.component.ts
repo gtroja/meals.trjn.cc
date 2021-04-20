@@ -15,6 +15,8 @@ export class AppComponent {
   mealList : Meal[] = null
   selectedMeal : Meal = null
 
+  showTopAlert = false;
+
   onSearchTermUpdate(term){
     this.mealService.searchMealsByName(term).subscribe(meals=>this.mealList = meals, _=> this.onError())
   }
@@ -24,6 +26,6 @@ export class AppComponent {
   }
 
   onError(){
-    alert("something went wrong")
+    this.showTopAlert = true;
   }
 }

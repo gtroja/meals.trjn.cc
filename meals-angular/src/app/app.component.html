@@ -1,3 +1,32 @@
-<app-search-bar (term)="onSearchTermUpdate($event)"></app-search-bar>
-<app-meal-list [mealList]="mealList" (selectedMeal)="onSelectedMealUpdate($event)"></app-meal-list>
-<app-meal-modal [meal]="selectedMeal"></app-meal-modal>
+<div class="slds-notify_container">
+    <ngl-alert *ngIf="showTopAlert" variant="error" [duration]=3000 (close)="showTopAlert = false">
+        <h2 class="slds-text-heading_small">
+            something went wrong fetching meals
+        </h2>
+    </ngl-alert>
+</div>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__figure">
+              <span class="slds-icon_container slds-icon-standard-account" title="Meal Search">
+                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                  <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#search"></use>
+                </svg>
+                <span class="slds-assistive-text">Meal Search</span>
+              </span>
+            </div>
+            <div class="slds-media__body">
+              <h2 class="slds-card__header-title">
+                  <span>Meal Search</span>
+              </h2>
+            </div>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <app-search-bar (term)="onSearchTermUpdate($event)"></app-search-bar>
+            <app-meal-list [mealList]="mealList" (selectedMeal)="onSelectedMealUpdate($event)"></app-meal-list>
+            <app-meal-modal [meal]="selectedMeal"></app-meal-modal>           
+
+        </div>
+      </article>
