@@ -6,11 +6,12 @@ import java.util.List;
 import java.io.IOException;
 
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-
+import java.nio.charset.StandardCharsets;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -22,37 +23,38 @@ public class MealDbClient {
 
     public static List<Meal> searchByName(String name){
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(mealDbSearchURL + name)).build();
-        
         List<Meal> result = new ArrayList<Meal>();
+        JSONObject jo = httpGetJson(mealDbSearchURL + URLEncoder.encode(name, StandardCharsets.UTF_8));
+        
+        if(jo.isNull("meals")) return result;
+
+        JSONArray meals = (JSONArray)jo.get("meals");
+        for (int i = 0; i < meals.length(); i++) {
+            result.add(new Meal(meals.getJSONObject(i)));                  
+        }
+
+        return result;
+    }
+
+    private static JSONObject httpGetJson( String url){
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
 
         try {
             HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
             if (response.statusCode() == 200) {
-                JSONObject jo = new JSONObject(response.body());
-                if(jo.isNull("meals")) return result;
-                JSONArray meals = (JSONArray)jo.get("meals");
-                for (int i = 0; i < meals.length(); i++) {
-                    JSONObject meal = meals.getJSONObject(i);
-                    result.add(
-                        new Meal(
-                            meal.getNumber("idMeal"),
-                            meal.getString("strMeal"),
-                            meal.getString("strCategory"),
-                            meal.getString("strArea"),
-                            meal.getString("strMealThumb"),
-                            meal.getString("strInstructions")                           
-                        )
-                    );                    
-                }
+                return new JSONObject(response.body());
+            }
+            else{
+                return new JSONObject("[]");
             }
             
         }
+
         catch (IOException | InterruptedException e) {
             e.printStackTrace();
+            return new JSONObject("[]");
         }
-
-        return result;
     }
 }

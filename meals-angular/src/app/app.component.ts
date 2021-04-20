@@ -12,14 +12,18 @@ export class AppComponent {
 
   constructor(private mealService: MealService) {}
 
-  mealList : Meal[] = [ {id : 1,name : "nome 1",area : "area 1", category : "category 1", cookingInstructions :"cookingInstructions 2", thumbnail :"404"} ]
+  mealList : Meal[] = null
   selectedMeal : Meal = null
 
   onSearchTermUpdate(term){
-    this.mealService.searchMealsByName(term).subscribe(meals=>this.mealList = meals)
+    this.mealService.searchMealsByName(term).subscribe(meals=>this.mealList = meals, _=> this.onError())
   }
 
   onSelectedMealUpdate(meal){
     this.selectedMeal = meal
+  }
+
+  onError(){
+    alert("something went wrong")
   }
 }

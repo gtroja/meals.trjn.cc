@@ -16,10 +16,6 @@ export class MealService {
   searchMealsByName(name : string):Observable<Meal[]>{
     return this.http.get<Meal[]>(this.apiURL + "/search?name=" + name)
   }
-
-  getMealById(id : number):Observable<Meal>{
-    return this.http.get<Meal>(this.apiURL + "/meal/" + id)
-  }
   
 
 

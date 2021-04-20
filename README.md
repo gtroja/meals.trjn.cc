@@ -19,5 +19,13 @@ The `meals-angular` directory contains the source for the front-end and `proxy-a
 
 The frontend consumes data from the MealDB's api throught the meals.trjn api, which makes simple http get requests and formats the data received, returning it to the frontend. All meals images shown are hosted by MealsDB.
 
+
+## what's next?
+
+it would be great to :
+- automate the packaging (build the front and put it in the file server) and deployment
+- implement frontend tests
+
+
 ## who?
 This webapp was made by Guilherme Trojan. contact me by email via guilhermetrojan [at] alunos [dot]  utfpr.edu.br or guilhermetrojan [at] gmail.com

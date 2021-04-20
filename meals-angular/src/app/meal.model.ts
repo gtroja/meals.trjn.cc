@@ -3,6 +3,6 @@ export interface Meal {
     name: string;
     category: string;
     area: string;
-    thumbnail: string; //change to Url;
+    thumbnail: string;
     cookingInstructions: string;
   }

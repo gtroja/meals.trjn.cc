@@ -1,5 +1,7 @@
 package cc.trjn.meals.model;
 
+import org.json.JSONObject;
+
 public class Meal {
 
     private Number id;
@@ -11,6 +13,15 @@ public class Meal {
 
 
     public Meal(){
+    }
+
+    public Meal( JSONObject json ){
+        this.id = json.getNumber("idMeal");
+        this.name = json.getString("strMeal");
+        this.category = json.getString("strCategory");
+        this.area = json.getString("strArea");
+        this.thumbnail = json.getString("strMealThumb");
+        this.cookingInstructions = json.getString("strInstructions");     
     }
 
     public Meal(
