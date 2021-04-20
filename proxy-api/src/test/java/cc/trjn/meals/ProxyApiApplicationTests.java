@@ -23,6 +23,15 @@ class ProxyApiApplicationTests {
 
 	}
 
+	@Test
+	void hasAccessToMealDB() {
+		try {
+			assert(MealDbClient.searchByName("onion").size() > 0);
 
+		} catch (Exception e) {
+			assert(false);
+		}
+
+	}
 
 }
