@@ -1,69 +1,58 @@
 package cc.trjn.meals;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import java.io.IOException;
+
 import java.net.URI;
 import java.net.http.HttpClient;
-import java.net.http.HttpResponse;
-import java.util.Arrays;
-import java.util.List;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 
-import org.springframework.web.client.HttpClientErrorException.NotFound;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
 import cc.trjn.meals.model.Meal;
 
 public class MealDbClient {
 
-    private static String mealDbMealURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
     private static String mealDbSearchURL = "https://themealdb.com/api/json/v1/1/search.php?s=";
 
-    public static Meal getById(Number id){
-
-        //HttpResponse<String> response = HttpClient.newHttpClient().send(HttpRequest.newBuilder(URI.create(mealDbMealURL + id.toString())), BodyHandlers.ofString());
-        return new Meal(
-            id,
-            "teste",
-            "categoria",
-            "area",
-            "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
-            "instrucoes"
-        );
-
-    }
-
     public static List<Meal> searchByName(String name){
-       // HttpResponse<String> response = HttpClient.newHttpClient().send(HttpRequest.newBuilder(URI.create(mealDbSearchURL + name)), BodyHandlers.ofString());
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(mealDbSearchURL + name)).build();
         
-        return Arrays.asList(
-            new Meal(
-                1,
-                name,
-                "categoria",
-                "area",
-                "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
-                "instrucoes"
-            ),
-            new Meal(
-                2,
-                name + '2',
-                "categoria",
-                "area",
-                "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
-                "instrucoes"
-            ), new Meal(
-                3,
-                name + '4',
-                "categoria",
-                "area",
-                "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
-                "instrucoes"
-            )
+        List<Meal> result = new ArrayList<Meal>();
 
+        try {
+            HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+            if (response.statusCode() == 200) {
+                JSONObject jo = new JSONObject(response.body());
+                if(jo.isNull("meals")) return result;
+                JSONArray meals = (JSONArray)jo.get("meals");
+                for (int i = 0; i < meals.length(); i++) {
+                    JSONObject meal = meals.getJSONObject(i);
+                    result.add(
+                        new Meal(
+                            meal.getNumber("idMeal"),
+                            meal.getString("strMeal"),
+                            meal.getString("strCategory"),
+                            meal.getString("strArea"),
+                            meal.getString("strMealThumb"),
+                            meal.getString("strInstructions")                           
+                        )
+                    );                    
+                }
+            }
+            
+        }
+        catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        );
-    }
-
-    private static Meal convertToMeal(String input){
-        return new Meal();
-
+        return result;
     }
 }
