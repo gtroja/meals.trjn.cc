@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 public class Meal {
 
-    private Number id;
+    private String id;
     private String name;
     private String category;
     private String area;
@@ -16,7 +16,7 @@ public class Meal {
     }
 
     public Meal( JSONObject json ){
-        this.id = json.getNumber("idMeal");
+        this.id = json.getString("idMeal");
         this.name = json.getString("strMeal");
         this.category = json.getString("strCategory");
         this.area = json.getString("strArea");
@@ -25,7 +25,7 @@ public class Meal {
     }
 
     public Meal(
-        Number id,
+        String id,
         String name,
         String category,
         String area,
@@ -40,11 +40,11 @@ public class Meal {
         this.cookingInstructions = cookingInstructions;
     }
 
-    public Number getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(String id) {
         this.id = id;
     }
 
