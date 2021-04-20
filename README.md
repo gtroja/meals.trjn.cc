@@ -25,6 +25,8 @@ The frontend consumes data from the MealDB's api throught the meals.trjn api, wh
 it would be great to :
 - automate the packaging (build the front and put it in the file server) and deployment
 - implement frontend tests
+- animations
+- infinite scrooling
 
 
 ## who?
