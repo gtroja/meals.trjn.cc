@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import cc.trjn.meals.model.Meal;
 
@@ -16,6 +17,11 @@ import cc.trjn.meals.model.Meal;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 360)
 @RequestMapping("/api")
 public class MealController {
+
+  @RequestMapping("/{file}")
+  String index(@PathVariable("file") String value) {
+    return value.equals("")?"index":value;
+  }
 
     @GetMapping("/search")
     public ResponseEntity<List<Meal>> getMealsBySearchedName(@RequestParam(value = "name") String name){
