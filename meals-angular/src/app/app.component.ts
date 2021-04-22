@@ -17,6 +17,10 @@ export class AppComponent {
 
   showTopAlert = false;
 
+  ngOnInit() {
+    this.mealService.searchMealsByName("").subscribe(meals=>this.mealList = meals, _=> this.onError())
+  }
+
   onSearchTermUpdate(term){
     this.mealService.searchMealsByName(term).subscribe(meals=>this.mealList = meals, _=> this.onError())
   }

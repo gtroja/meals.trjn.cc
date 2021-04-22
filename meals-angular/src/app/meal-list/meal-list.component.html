@@ -1,26 +1,30 @@
-<ul class="slds-has-dividers_around-space slds-p-around_medium">
-    <li *ngFor="let meal of mealList" class="slds-item" (click)="onClickOnMeal(meal)">  
-    <article class="slds-tile slds-media">
-      <div class="slds-media__figure">
-        <span class="slds-avatar slds-avatar_circle slds-avatar_medium">
-          <img alt="" src={{meal.thumbnail}} title={{meal.name}} />
-        </span>
-      </div>
-      <div class="slds-media__body">
-        <h3 class="slds-tile__title slds-truncate" title="Lexee L. Jackson">
-        <a>
-            {{meal.name}}
-        </a>
-        </h3>
-        <div class="slds-tile__detail">
-          <dl class="slds-list_horizontal slds-wrap">
-            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="category label">Category:</dt>
-            <dd class="slds-item_detail slds-truncate" title={{meal.category}}>{{meal.category}}</dd>
-            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="area label">Area:</dt>
-            <dd class="slds-item_detail slds-truncate" title={{meal.area}}>{{meal.area}}</dd>
-          </dl>
+<div *ngIf="mealList">  
+  <ul class="slds-has-dividers_around-space slds-p-around_medium">
+    <li  *ngFor="let meal of mealList.slice(start, end)" class="slds-item" (click)="onClickOnMeal(meal)">  
+      <article class="slds-tile slds-media">
+        <div class="slds-media__figure">
+          <span class="slds-avatar slds-avatar_circle slds-avatar_medium">
+            <img alt="" src={{meal.thumbnail}} title={{meal.name}} />
+          </span>
         </div>
-      </div>
-    </article>
+        <div class="slds-media__body">
+          <h3 class="slds-tile__title slds-truncate" title="Lexee L. Jackson">
+            <a>
+              {{meal.name}}
+            </a>
+          </h3>
+          <div class="slds-tile__detail">
+            <dl class="slds-list_horizontal slds-wrap">
+              <dt class="slds-item_label slds-text-color_weak slds-truncate" title="category label">Category:</dt>
+              <dd class="slds-item_detail slds-truncate" title={{meal.category}}>{{meal.category}}</dd>
+              <dt class="slds-item_label slds-text-color_weak slds-truncate" title="area label">Area:</dt>
+              <dd class="slds-item_detail slds-truncate" title={{meal.area}}>{{meal.area}}</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
     </li>
-</ul>
+  </ul>
+  <div class="slds-text-title_caps-normal slds-m-bottom_x-small">Showing {{start}} - {{end}} of {{mealList.length}}</div>
+  <ngl-pagination [(page)]="page" [total]="mealList.length" boundaryNumbers="0" [perPage]="perPage" (pageChange)="onPageChange($event)"#pagination ></ngl-pagination>
+</div>
