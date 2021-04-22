@@ -25,8 +25,8 @@
         </div>
         <div class="slds-card__body slds-card__body_inner">
             <app-search-bar (term)="onSearchTermUpdate($event)"></app-search-bar>
-            <app-meal-list [mealList]="mealList" (selectedMeal)="onSelectedMealUpdate($event)"></app-meal-list>
-            <app-meal-modal [meal]="selectedMeal"></app-meal-modal>   
+            <app-meal-list [mealList]="mealList" (selectedMeal)="onSelectedMealClick($event)"></app-meal-list>
+            <app-meal-modal [meal]="selectedMeal" [(open)]="showMealModal"></app-meal-modal>   
                     
         </div>
       </article>

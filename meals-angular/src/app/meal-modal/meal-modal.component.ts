@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Meal } from '../meal.model'
 
 @Component({
@@ -9,16 +9,18 @@ import { Meal } from '../meal.model'
 export class MealModalComponent implements OnInit {
 
   @Input() meal : Meal
-  ngOnChanges() {
-    this.opened = this.meal?true:false;
-  }
 
-  opened : boolean = false;
+  @Input() open : Boolean
+  @Output() openChange = new EventEmitter<Boolean>()
 
   constructor() { }
 
   ngOnInit(): void {
     
+  }
+
+  onCloseModal(){
+    this.openChange.emit(false)
   }
 
 }

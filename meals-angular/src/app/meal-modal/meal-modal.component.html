@@ -1,5 +1,5 @@
 
-<ngl-modal  *ngIf=meal [header]=meal.name [(open)]="opened">
+<ngl-modal  *ngIf=meal [header]=meal.name [(open)]="open" (openChange)="onCloseModal()">
   <div class="slds-p-around_medium">
     <div class="slds-p-around_medium">      
       <img src={{meal.thumbnail}}/>

@@ -16,6 +16,7 @@ export class AppComponent {
   selectedMeal : Meal = null
 
   showTopAlert = false;
+  showMealModal = false;
 
   ngOnInit() {
     this.mealService.searchMealsByName("").subscribe(meals=>this.mealList = meals, _=> this.onError())
@@ -25,8 +26,9 @@ export class AppComponent {
     this.mealService.searchMealsByName(term).subscribe(meals=>this.mealList = meals, _=> this.onError())
   }
 
-  onSelectedMealUpdate(meal){
+  onSelectedMealClick(meal){
     this.selectedMeal = meal
+    this.showMealModal = true
   }
 
   onError(){
