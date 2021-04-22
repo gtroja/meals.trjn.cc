@@ -50,7 +50,6 @@ it would be great to :
 - automate the packaging (build the front and put it in the file server) and deployment
 - implement frontend tests
 - animations
-- paging/infinite scrooling
 
 ## who?
 This webapp was made by Guilherme Trojan. contact me by email via guilhermetrojan [at] alunos [dot]  utfpr.edu.br or guilhermetrojan [at] gmail.com
