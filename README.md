@@ -12,7 +12,7 @@ this is a test for a fullstack developer position at TOPi. The test description 
 Go to https://meals.trjn.cc and type a meal's name in the searchbox located at the top of the page. If there are matches, a list of meals will appear. Click on a meal entry to view its details.
 
 
-### ..it's made?
+### ..is't made?
 
 this system is made using [SpringBoot Java Framework](https://spring.io/projects/spring-boot) for the backend and [Angular](https://angular.io/) for the frontend. The system is hosted at [Heroku](heroku.com). 
 
